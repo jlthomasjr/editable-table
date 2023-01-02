@@ -1,7 +1,7 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
-import data from "./mock-data.json";
+//import data from "./mock-data.json";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import EditableRow from "./components/EditableRow";
 
@@ -9,7 +9,15 @@ import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
+import { API } from "aws-amplify";
+import { listProjects } from "./graphql/queries";
+import {
+  createProject as createProjectMutation,
+  updateProject as updateProjectMutation,
+  deleteProject as deleteProjectMutation,
+} from "./graphql/mutations";
 
+/*
 const App = ({ signOut }) => {
   const [projects, setProjects] = useState(data);
   const [addFormData, setAddFormData] = useState({
@@ -18,13 +26,32 @@ const App = ({ signOut }) => {
     businessDomain: "",
     engFTEneed: "",
   });
-  
+  */
+
+const App = ({ signOut }) => {
+  const [projects, setProjects] = useState([]);
+  const [addFormData, setAddFormData] = useState({
+    projectName: "",
+    projectDescription: "",
+    businessDomain: "",
+    engFTEneed: 0,
+  });
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  async function fetchProjects() {
+    const apiData = await API.graphql({ query: listProjects });
+    const projectsFromAPI = apiData.data.listProjects.items;
+    setProjects(projectsFromAPI);
+  }
 
   const [editFormData, setEditFormData] = useState({
     projectName: "",
     projectDescription: "",
     businessDomain: "",
-    engFTEneed: "",
+    engFTEneed: 0,
   });
 
   const [editProjectId, setEditProjectId] = useState(null);
@@ -51,8 +78,10 @@ const App = ({ signOut }) => {
     newFormData[fieldName] = fieldValue;
 
     setEditFormData(newFormData);
+    console.log("ran handleEditFormChange")
   };
 
+  /*
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
 
@@ -67,7 +96,26 @@ const App = ({ signOut }) => {
     const newProjects = [...projects, newProject];
     setProjects(newProjects);
   };
+  */
 
+  async function handleAddFormSubmit(event) {
+    event.preventDefault();
+    const newProject = {
+      id: nanoid(),
+      projectName: addFormData.projectName,
+      projectDescription: addFormData.projectDescription,
+      businessDomain: addFormData.businessDomain,
+      engFTEneed: addFormData.engFTEneed,
+    };
+    await API.graphql({
+      query: createProjectMutation,
+      variables: { input: newProject },
+    });
+    fetchProjects();
+    event.target.reset();
+  }
+
+  /*
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
@@ -87,6 +135,38 @@ const App = ({ signOut }) => {
 
     setProjects(newProjects);
     setEditProjectId(null);
+    console.log("ran handleEditFormSubmit")
+    console.log(editedProject)
+    console.log(newProjects)
+  };
+  */
+
+  async function handleEditFormSubmit(event) {
+    event.preventDefault();
+
+    const editedProject = {
+      id: editProjectId,
+      projectName: editFormData.projectName,
+      projectDescription: editFormData.projectDescription,
+      businessDomain: editFormData.businessDomain,
+      engFTEneed: editFormData.engFTEneed,
+    };
+
+    //const newProjects = [...projects];
+    //const index = projects.findIndex((project) => project.id === editProjectId);
+    //newProjects[index] = editedProject;
+
+    console.log("Running handleEditFormSubmit")
+    console.log(editedProject)
+
+    await API.graphql({
+      query: updateProjectMutation,
+      variables: { input: editedProject },
+    });
+    console.log("About to run fetchProjects")
+    fetchProjects();
+    setEditProjectId(null);
+    event.target.reset();
   };
 
   const handleEditClick = (event, project) => {
@@ -107,14 +187,46 @@ const App = ({ signOut }) => {
     setEditProjectId(null);
   };
 
+  /*
   const handleDeleteClick = (projectId) => {
     const newProjects = [...projects];
-
+    console.log(newProjects)
     const index = projects.findIndex((project) => project.id === projectId);
+    console.log("Running handleDeleteClick")
+    
+    console.log(projectId)
+    console.log(projects)
+    console.log(index)
+    console.log(newProjects)
+
+    newProjects.splice(index, 1);
+
+    console.log(newProjects)
+
+    setProjects(newProjects);
+  };
+  */
+
+  async function handleDeleteClick(id) {
+    const newProjects = [...projects];
+
+    const index = projects.findIndex((project) => project.id === id);
 
     newProjects.splice(index, 1);
 
     setProjects(newProjects);
+
+    console.log("Running handleDeleteClick")
+    //console.log(projectId)
+    console.log(id)
+    console.log(projects)
+    console.log(newProjects)
+    //console.log(deleteProject)
+
+    await API.graphql({
+      query: deleteProjectMutation,
+      variables: { input: { id } },
+    });
   };
 
   return (
