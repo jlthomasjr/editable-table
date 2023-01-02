@@ -1,7 +1,7 @@
 .app-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
   padding: 1rem;
 }
 
@@ -15,7 +15,7 @@ td {
   border: 1px solid #ffffff;
   text-align: left;
   padding: 2px;
-  font-size: 32px;
+  font-size: 28px;
 }
 
 th {

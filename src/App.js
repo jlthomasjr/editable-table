@@ -5,7 +5,12 @@ import data from "./mock-data.json";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import EditableRow from "./components/EditableRow";
 
-const App = () => {
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+} from '@aws-amplify/ui-react';
+
+const App = ({ signOut }) => {
   const [projects, setProjects] = useState(data);
   const [addFormData, setAddFormData] = useState({
     projectName: "",
@@ -13,6 +18,7 @@ const App = () => {
     businessDomain: "",
     engFTEneed: "",
   });
+  
 
   const [editFormData, setEditFormData] = useState({
     projectName: "",
@@ -182,4 +188,5 @@ const App = () => {
   );
 };
 
-export default App;
+//export default App;
+export default withAuthenticator(App);
