@@ -7,15 +7,16 @@
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  /*width: 100%;*/
 }
 
 th,
 td {
   border: 1px solid #ffffff;
   text-align: left;
-  padding: 2px;
-  font-size: 28px;
+  padding-left: 2px;
+  padding-right: 35px;
+  font-size: 18px;
 }
 
 th {
@@ -37,5 +38,5 @@ form td:last-child {
 }
 
 form * {
-  font-size: 28px;
+  font-size: 18px;
 }

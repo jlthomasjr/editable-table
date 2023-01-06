@@ -58,25 +58,19 @@ const App = ({ signOut }) => {
 
   const handleAddFormChange = (event) => {
     event.preventDefault();
-
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
-
     const newFormData = { ...addFormData };
     newFormData[fieldName] = fieldValue;
-
     setAddFormData(newFormData);
   };
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
-
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
-
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
-
     setEditFormData(newFormData);
     console.log("ran handleEditFormChange")
   };
@@ -128,11 +122,8 @@ const App = ({ signOut }) => {
     };
 
     const newProjects = [...projects];
-
     const index = projects.findIndex((project) => project.id === editProjectId);
-
     newProjects[index] = editedProject;
-
     setProjects(newProjects);
     setEditProjectId(null);
     console.log("ran handleEditFormSubmit")
@@ -143,7 +134,6 @@ const App = ({ signOut }) => {
 
   async function handleEditFormSubmit(event) {
     event.preventDefault();
-
     const editedProject = {
       id: editProjectId,
       projectName: editFormData.projectName,
@@ -155,15 +145,14 @@ const App = ({ signOut }) => {
     //const newProjects = [...projects];
     //const index = projects.findIndex((project) => project.id === editProjectId);
     //newProjects[index] = editedProject;
-
-    console.log("Running handleEditFormSubmit")
-    console.log(editedProject)
+    //console.log("Running handleEditFormSubmit")
+    //console.log(editedProject)
 
     await API.graphql({
       query: updateProjectMutation,
       variables: { input: editedProject },
     });
-    console.log("About to run fetchProjects")
+    //console.log("About to run fetchProjects")
     fetchProjects();
     setEditProjectId(null);
     event.target.reset();
@@ -209,18 +198,15 @@ const App = ({ signOut }) => {
 
   async function handleDeleteClick(id) {
     const newProjects = [...projects];
-
     const index = projects.findIndex((project) => project.id === id);
-
     newProjects.splice(index, 1);
-
     setProjects(newProjects);
 
-    console.log("Running handleDeleteClick")
+    //console.log("Running handleDeleteClick")
     //console.log(projectId)
-    console.log(id)
-    console.log(projects)
-    console.log(newProjects)
+    //console.log(id)
+    //console.log(projects)
+    //console.log(newProjects)
     //console.log(deleteProject)
 
     await API.graphql({
