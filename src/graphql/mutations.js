@@ -11,7 +11,12 @@ export const createProject = /* GraphQL */ `
       projectName
       projectDescription
       businessDomain
+      projectPriority
       engFTEneed
+      intengFTEneed
+      bsaFTEneed
+      pmFTEneed
+      tpmFTEneed
       createdAt
       updatedAt
     }
@@ -27,7 +32,12 @@ export const updateProject = /* GraphQL */ `
       projectName
       projectDescription
       businessDomain
+      projectPriority
       engFTEneed
+      intengFTEneed
+      bsaFTEneed
+      pmFTEneed
+      tpmFTEneed
       createdAt
       updatedAt
     }
@@ -43,7 +53,12 @@ export const deleteProject = /* GraphQL */ `
       projectName
       projectDescription
       businessDomain
+      projectPriority
       engFTEneed
+      intengFTEneed
+      bsaFTEneed
+      pmFTEneed
+      tpmFTEneed
       createdAt
       updatedAt
     }

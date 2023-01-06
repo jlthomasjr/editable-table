@@ -34,7 +34,12 @@ const App = ({ signOut }) => {
     projectName: "",
     projectDescription: "",
     businessDomain: "",
+    projectPriority: "",
     engFTEneed: 0,
+    intengFTEneed: 0,
+    bsaFTEneed: 0,
+    pmFTEneed: 0,
+    tpmFTEneed: 0,
   });
 
   useEffect(() => {
@@ -51,7 +56,12 @@ const App = ({ signOut }) => {
     projectName: "",
     projectDescription: "",
     businessDomain: "",
+    projectPriority: "",
     engFTEneed: 0,
+    intengFTEneed: 0,
+    bsaFTEneed: 0,
+    pmFTEneed: 0,
+    tpmFTEneed: 0,
   });
 
   const [editProjectId, setEditProjectId] = useState(null);
@@ -99,7 +109,12 @@ const App = ({ signOut }) => {
       projectName: addFormData.projectName,
       projectDescription: addFormData.projectDescription,
       businessDomain: addFormData.businessDomain,
+      projectPriority: addFormData.projectPriority,
       engFTEneed: addFormData.engFTEneed,
+      intengFTEneed: addFormData.intengFTEneed,
+      bsaFTEneed: addFormData.bsaFTEneed,
+      pmFTEneed: addFormData.pmFTEneed,
+      tpmFTEneed: addFormData.tpmFTEneed,
     };
     await API.graphql({
       query: createProjectMutation,
@@ -139,7 +154,12 @@ const App = ({ signOut }) => {
       projectName: editFormData.projectName,
       projectDescription: editFormData.projectDescription,
       businessDomain: editFormData.businessDomain,
+      projectPriority: editFormData.projectPriority,
       engFTEneed: editFormData.engFTEneed,
+      intengFTEneed: editFormData.intengFTEneed,
+      bsaFTEneed: editFormData.bsaFTEneed,
+      pmFTEneed: editFormData.pmFTEneed,
+      tpmFTEneed: editFormData.tpmFTEneed,
     };
 
     //const newProjects = [...projects];
@@ -166,7 +186,12 @@ const App = ({ signOut }) => {
       projectName: project.projectName,
       projectDescription: project.projectDescription,
       businessDomain: project.businessDomain,
+      projectPriority: project.projectPriority,
       engFTEneed: project.engFTEneed,
+      intengFTEneed: project.intengFTEneed,
+      bsaFTEneed: project.bsaFTEneed,
+      pmFTEneed: project.pmFTEneed,
+      tpmFTEneed: project.tpmFTEneed,
     };
 
     setEditFormData(formValues);
@@ -224,7 +249,12 @@ const App = ({ signOut }) => {
               <th>Project Name</th>
               <th>Project Description</th>
               <th>Business Domain</th>
-              <th>Eng FTE Need</th>
+              <th>Priority</th>
+              <th>Eng hrs</th>
+              <th>Int Eng hrs</th>
+              <th>BSA hrs</th>
+              <th>PM hrs</th>
+              <th>TPM hrs</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -256,30 +286,74 @@ const App = ({ signOut }) => {
           type="text"
           name="projectName"
           required="required"
-          placeholder="Project name..."
+          placeholder="Project name"
           onChange={handleAddFormChange}
         />
+        <br />
         <input
           type="text"
           name="projectDescription"
           required="required"
-          placeholder="Project description..."
+          placeholder="Project description"
           onChange={handleAddFormChange}
         />
+        <br />
         <input
           type="text"
           name="businessDomain"
           required="required"
-          placeholder="Business domain (e.g., Finance)..."
+          placeholder="Domain (Finance, HR...)"
+          onChange={handleAddFormChange}
+          />
+          <br />
+        <input
+          type="text"
+          name="projectPriority"
+          required="required"
+          placeholder="Priority (P0, P1...)"
           onChange={handleAddFormChange}
         />
+        <br />
         <input
           type="number"
           name="engFTEneed"
           required="required"
-          placeholder="# Eng FTE resources..."
+          placeholder="Eng hrs"
           onChange={handleAddFormChange}
         />
+        <br />
+        <input
+          type="number"
+          name="intengFTEneed"
+          required="required"
+          placeholder="Integration Eng hrs"
+          onChange={handleAddFormChange}
+        />
+        <br />
+        <input
+          type="number"
+          name="bsaFTEneed"
+          required="required"
+          placeholder="BSA hrs"
+          onChange={handleAddFormChange}
+        />
+        <br />
+        <input
+          type="number"
+          name="pmFTEneed"
+          required="required"
+          placeholder="PM hrs"
+          onChange={handleAddFormChange}
+        />
+        <br />
+        <input
+          type="number"
+          name="tpmFTEneed"
+          required="required"
+          placeholder="TPM hrs"
+          onChange={handleAddFormChange}
+        />
+        <br /><br />
         <button type="submit">Add</button>
       </form>
     </div>

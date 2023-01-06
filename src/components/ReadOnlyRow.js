@@ -6,7 +6,12 @@ const ReadOnlyRow = ({ project, handleEditClick, handleDeleteClick }) => {
       <td>{project.projectName}</td>
       <td>{project.projectDescription}</td>
       <td>{project.businessDomain}</td>
+      <td>{project.projectPriority}</td>
       <td>{project.engFTEneed}</td>
+      <td>{project.intengFTEneed}</td>
+      <td>{project.bsaFTEneed}</td>
+      <td>{project.pmFTEneed}</td>
+      <td>{project.tpmFTEneed}</td>
       <td>
         <button
           type="button"

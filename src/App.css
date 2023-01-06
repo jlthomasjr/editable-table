@@ -7,7 +7,7 @@
 
 table {
   border-collapse: collapse;
-  /*width: 100%;*/
+  width: 100%;
 }
 
 th,
@@ -28,7 +28,7 @@ td {
 }
 
 form {
-  display: flex;
+  /*display: flex;*/
   gap: 5px;
 }
 
@@ -38,5 +38,9 @@ form td:last-child {
 }
 
 form * {
+  font-size: 18px;
+}
+
+h2 {
   font-size: 18px;
 }

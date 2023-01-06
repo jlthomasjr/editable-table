@@ -8,7 +8,12 @@ export const getProject = /* GraphQL */ `
       projectName
       projectDescription
       businessDomain
+      projectPriority
       engFTEneed
+      intengFTEneed
+      bsaFTEneed
+      pmFTEneed
+      tpmFTEneed
       createdAt
       updatedAt
     }
@@ -26,7 +31,12 @@ export const listProjects = /* GraphQL */ `
         projectName
         projectDescription
         businessDomain
+        projectPriority
         engFTEneed
+        intengFTEneed
+        bsaFTEneed
+        pmFTEneed
+        tpmFTEneed
         createdAt
         updatedAt
       }
