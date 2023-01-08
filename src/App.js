@@ -1,7 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
-//import data from "./mock-data.json";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import EditableRow from "./components/EditableRow";
 
@@ -16,17 +15,9 @@ import {
   updateProject as updateProjectMutation,
   deleteProject as deleteProjectMutation,
 } from "./graphql/mutations";
+import Resources from "./Resources";
 
-/*
-const App = ({ signOut }) => {
-  const [projects, setProjects] = useState(data);
-  const [addFormData, setAddFormData] = useState({
-    projectName: "",
-    projectDescription: "",
-    businessDomain: "",
-    engFTEneed: "",
-  });
-  */
+import ReactDOM from "react-dom";
 
 const App = ({ signOut }) => {
   const [projects, setProjects] = useState([]);
@@ -82,25 +73,8 @@ const App = ({ signOut }) => {
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
     setEditFormData(newFormData);
-    console.log("ran handleEditFormChange")
+    //console.log("ran handleEditFormChange")
   };
-
-  /*
-  const handleAddFormSubmit = (event) => {
-    event.preventDefault();
-
-    const newProject = {
-      id: nanoid(),
-      projectName: addFormData.projectName,
-      projectDescription: addFormData.projectDescription,
-      businessDomain: addFormData.businessDomain,
-      engFTEneed: addFormData.engFTEneed,
-    };
-
-    const newProjects = [...projects, newProject];
-    setProjects(newProjects);
-  };
-  */
 
   async function handleAddFormSubmit(event) {
     event.preventDefault();
@@ -123,29 +97,6 @@ const App = ({ signOut }) => {
     fetchProjects();
     event.target.reset();
   }
-
-  /*
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault();
-
-    const editedProject = {
-      id: editProjectId,
-      projectName: editFormData.projectName,
-      projectDescription: editFormData.projectDescription,
-      businessDomain: editFormData.businessDomain,
-      engFTEneed: editFormData.engFTEneed,
-    };
-
-    const newProjects = [...projects];
-    const index = projects.findIndex((project) => project.id === editProjectId);
-    newProjects[index] = editedProject;
-    setProjects(newProjects);
-    setEditProjectId(null);
-    console.log("ran handleEditFormSubmit")
-    console.log(editedProject)
-    console.log(newProjects)
-  };
-  */
 
   async function handleEditFormSubmit(event) {
     event.preventDefault();
@@ -201,26 +152,6 @@ const App = ({ signOut }) => {
     setEditProjectId(null);
   };
 
-  /*
-  const handleDeleteClick = (projectId) => {
-    const newProjects = [...projects];
-    console.log(newProjects)
-    const index = projects.findIndex((project) => project.id === projectId);
-    console.log("Running handleDeleteClick")
-    
-    console.log(projectId)
-    console.log(projects)
-    console.log(index)
-    console.log(newProjects)
-
-    newProjects.splice(index, 1);
-
-    console.log(newProjects)
-
-    setProjects(newProjects);
-  };
-  */
-
   async function handleDeleteClick(id) {
     const newProjects = [...projects];
     const index = projects.findIndex((project) => project.id === id);
@@ -240,8 +171,32 @@ const App = ({ signOut }) => {
     });
   };
 
+  async function handleProjectsClick(id) {
+    ReactDOM.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>,
+      document.getElementById("root")
+    );
+  };
+
+  async function handleResourcesClick(id) {
+    ReactDOM.render(
+      <React.StrictMode>
+        <Resources />
+      </React.StrictMode>,
+      document.getElementById("root")
+    );
+  };
+
   return (
     <div className="app-container">
+    <h3><button type="button" onClick={handleProjectsClick}>
+          Projects
+        </button>
+    <button type="button" onClick={handleResourcesClick}>
+          Resources
+        </button></h3>
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
@@ -287,6 +242,7 @@ const App = ({ signOut }) => {
           name="projectName"
           required="required"
           placeholder="Project name"
+          style={{width: "350px"}}
           onChange={handleAddFormChange}
         />
         <br />
@@ -295,6 +251,7 @@ const App = ({ signOut }) => {
           name="projectDescription"
           required="required"
           placeholder="Project description"
+          style={{width: "350px"}}
           onChange={handleAddFormChange}
         />
         <br />
@@ -303,6 +260,7 @@ const App = ({ signOut }) => {
           name="businessDomain"
           required="required"
           placeholder="Domain (Finance, HR...)"
+          style={{width: "350px"}}
           onChange={handleAddFormChange}
           />
           <br />
@@ -311,6 +269,7 @@ const App = ({ signOut }) => {
           name="projectPriority"
           required="required"
           placeholder="Priority (P0, P1...)"
+          style={{width: "350px"}}
           onChange={handleAddFormChange}
         />
         <br />
@@ -319,6 +278,7 @@ const App = ({ signOut }) => {
           name="engFTEneed"
           required="required"
           placeholder="Eng hrs"
+          style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
         <br />
@@ -327,6 +287,7 @@ const App = ({ signOut }) => {
           name="intengFTEneed"
           required="required"
           placeholder="Integration Eng hrs"
+          style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
         <br />
@@ -335,6 +296,7 @@ const App = ({ signOut }) => {
           name="bsaFTEneed"
           required="required"
           placeholder="BSA hrs"
+          style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
         <br />
@@ -343,6 +305,7 @@ const App = ({ signOut }) => {
           name="pmFTEneed"
           required="required"
           placeholder="PM hrs"
+          style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
         <br />
@@ -351,6 +314,7 @@ const App = ({ signOut }) => {
           name="tpmFTEneed"
           required="required"
           placeholder="TPM hrs"
+          style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
         <br /><br />
