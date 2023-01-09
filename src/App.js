@@ -171,15 +171,6 @@ const App = ({ signOut }) => {
     });
   };
 
-  async function handleProjectsClick(id) {
-    ReactDOM.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
-  };
-
   async function handleResourcesClick(id) {
     ReactDOM.render(
       <React.StrictMode>
@@ -191,11 +182,8 @@ const App = ({ signOut }) => {
 
   return (
     <div className="app-container">
-    <t1><button type="button" onClick={handleProjectsClick}>
-          Projects
-        </button>
-    <button type="button" onClick={handleResourcesClick}>
-          Resources
+    <t1><button type="button" onClick={handleResourcesClick}>
+          Go To Resources
         </button></t1>
         <h2>Projects</h2>
       <form onSubmit={handleEditFormSubmit}>
