@@ -162,12 +162,12 @@ const Resources = ({ signOut }) => {
 
   return (
     <div className="app-container">
-    <h3><button type="button" onClick={handleProjectsClick}>
+    <t1><button type="button" onClick={handleProjectsClick}>
           Projects
         </button>
     <button type="button" onClick={handleResourcesClick}>
           Resources
-        </button></h3>
+        </button></t1>
         <h2>Resources</h2>
       <form onSubmit={handleEditFormSubmit}>
         <table>
