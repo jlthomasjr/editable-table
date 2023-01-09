@@ -168,6 +168,7 @@ const Resources = ({ signOut }) => {
     <button type="button" onClick={handleResourcesClick}>
           Resources
         </button></h3>
+        <h2>Resources</h2>
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
@@ -200,7 +201,7 @@ const Resources = ({ signOut }) => {
         </table>
       </form>
 
-      <h2>Add a Resource</h2>
+      <h2>Add Resource</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"

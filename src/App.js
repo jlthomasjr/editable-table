@@ -197,6 +197,7 @@ const App = ({ signOut }) => {
     <button type="button" onClick={handleResourcesClick}>
           Resources
         </button></h3>
+        <h2>Projects</h2>
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
@@ -235,7 +236,7 @@ const App = ({ signOut }) => {
         </table>
       </form>
 
-      <h2>Add a Project</h2>
+      <h2>Add Project</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
