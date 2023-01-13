@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createResource = /* GraphQL */ `
-  mutation CreateResource(
-    $input: CreateResourceInput!
-    $condition: ModelResourceConditionInput
+export const createResourcePOC = /* GraphQL */ `
+  mutation CreateResourcePOC(
+    $input: CreateResourcePOCInput!
+    $condition: ModelResourcePOCConditionInput
   ) {
-    createResource(input: $input, condition: $condition) {
+    createResourcePOC(input: $input, condition: $condition) {
       id
       resourceName
       resourceType
@@ -16,12 +16,12 @@ export const createResource = /* GraphQL */ `
     }
   }
 `;
-export const updateResource = /* GraphQL */ `
-  mutation UpdateResource(
-    $input: UpdateResourceInput!
-    $condition: ModelResourceConditionInput
+export const updateResourcePOC = /* GraphQL */ `
+  mutation UpdateResourcePOC(
+    $input: UpdateResourcePOCInput!
+    $condition: ModelResourcePOCConditionInput
   ) {
-    updateResource(input: $input, condition: $condition) {
+    updateResourcePOC(input: $input, condition: $condition) {
       id
       resourceName
       resourceType
@@ -31,12 +31,12 @@ export const updateResource = /* GraphQL */ `
     }
   }
 `;
-export const deleteResource = /* GraphQL */ `
-  mutation DeleteResource(
-    $input: DeleteResourceInput!
-    $condition: ModelResourceConditionInput
+export const deleteResourcePOC = /* GraphQL */ `
+  mutation DeleteResourcePOC(
+    $input: DeleteResourcePOCInput!
+    $condition: ModelResourcePOCConditionInput
   ) {
-    deleteResource(input: $input, condition: $condition) {
+    deleteResourcePOC(input: $input, condition: $condition) {
       id
       resourceName
       resourceType
@@ -46,12 +46,12 @@ export const deleteResource = /* GraphQL */ `
     }
   }
 `;
-export const createProject = /* GraphQL */ `
-  mutation CreateProject(
-    $input: CreateProjectInput!
-    $condition: ModelProjectConditionInput
+export const createProjectPOC = /* GraphQL */ `
+  mutation CreateProjectPOC(
+    $input: CreateProjectPOCInput!
+    $condition: ModelProjectPOCConditionInput
   ) {
-    createProject(input: $input, condition: $condition) {
+    createProjectPOC(input: $input, condition: $condition) {
       id
       projectName
       projectDescription
@@ -67,12 +67,12 @@ export const createProject = /* GraphQL */ `
     }
   }
 `;
-export const updateProject = /* GraphQL */ `
-  mutation UpdateProject(
-    $input: UpdateProjectInput!
-    $condition: ModelProjectConditionInput
+export const updateProjectPOC = /* GraphQL */ `
+  mutation UpdateProjectPOC(
+    $input: UpdateProjectPOCInput!
+    $condition: ModelProjectPOCConditionInput
   ) {
-    updateProject(input: $input, condition: $condition) {
+    updateProjectPOC(input: $input, condition: $condition) {
       id
       projectName
       projectDescription
@@ -88,12 +88,12 @@ export const updateProject = /* GraphQL */ `
     }
   }
 `;
-export const deleteProject = /* GraphQL */ `
-  mutation DeleteProject(
-    $input: DeleteProjectInput!
-    $condition: ModelProjectConditionInput
+export const deleteProjectPOC = /* GraphQL */ `
+  mutation DeleteProjectPOC(
+    $input: DeleteProjectPOCInput!
+    $condition: ModelProjectPOCConditionInput
   ) {
-    deleteProject(input: $input, condition: $condition) {
+    deleteProjectPOC(input: $input, condition: $condition) {
       id
       projectName
       projectDescription
@@ -104,6 +104,54 @@ export const deleteProject = /* GraphQL */ `
       bsaFTEneed
       pmFTEneed
       tpmFTEneed
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createProjectsResourcesPOC = /* GraphQL */ `
+  mutation CreateProjectsResourcesPOC(
+    $input: CreateProjectsResourcesPOCInput!
+    $condition: ModelProjectsResourcesPOCConditionInput
+  ) {
+    createProjectsResourcesPOC(input: $input, condition: $condition) {
+      id
+      projectName
+      businessDomain
+      resourceName
+      resourceRole
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateProjectsResourcesPOC = /* GraphQL */ `
+  mutation UpdateProjectsResourcesPOC(
+    $input: UpdateProjectsResourcesPOCInput!
+    $condition: ModelProjectsResourcesPOCConditionInput
+  ) {
+    updateProjectsResourcesPOC(input: $input, condition: $condition) {
+      id
+      projectName
+      businessDomain
+      resourceName
+      resourceRole
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteProjectsResourcesPOC = /* GraphQL */ `
+  mutation DeleteProjectsResourcesPOC(
+    $input: DeleteProjectsResourcesPOCInput!
+    $condition: ModelProjectsResourcesPOCConditionInput
+  ) {
+    deleteProjectsResourcesPOC(input: $input, condition: $condition) {
+      id
+      projectName
+      businessDomain
+      resourceName
+      resourceRole
       createdAt
       updatedAt
     }

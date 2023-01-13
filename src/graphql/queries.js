@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getResource = /* GraphQL */ `
-  query GetResource($id: ID!) {
-    getResource(id: $id) {
+export const getResourcePOC = /* GraphQL */ `
+  query GetResourcePOC($id: ID!) {
+    getResourcePOC(id: $id) {
       id
       resourceName
       resourceType
@@ -13,13 +13,13 @@ export const getResource = /* GraphQL */ `
     }
   }
 `;
-export const listResources = /* GraphQL */ `
-  query ListResources(
-    $filter: ModelResourceFilterInput
+export const listResourcePOCS = /* GraphQL */ `
+  query ListResourcePOCS(
+    $filter: ModelResourcePOCFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listResources(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listResourcePOCS(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         resourceName
@@ -32,9 +32,9 @@ export const listResources = /* GraphQL */ `
     }
   }
 `;
-export const getProject = /* GraphQL */ `
-  query GetProject($id: ID!) {
-    getProject(id: $id) {
+export const getProjectPOC = /* GraphQL */ `
+  query GetProjectPOC($id: ID!) {
+    getProjectPOC(id: $id) {
       id
       projectName
       projectDescription
@@ -50,13 +50,13 @@ export const getProject = /* GraphQL */ `
     }
   }
 `;
-export const listProjects = /* GraphQL */ `
-  query ListProjects(
-    $filter: ModelProjectFilterInput
+export const listProjectPOCS = /* GraphQL */ `
+  query ListProjectPOCS(
+    $filter: ModelProjectPOCFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProjectPOCS(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         projectName
@@ -68,6 +68,43 @@ export const listProjects = /* GraphQL */ `
         bsaFTEneed
         pmFTEneed
         tpmFTEneed
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getProjectsResourcesPOC = /* GraphQL */ `
+  query GetProjectsResourcesPOC($id: ID!) {
+    getProjectsResourcesPOC(id: $id) {
+      id
+      projectName
+      businessDomain
+      resourceName
+      resourceRole
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listProjectsResourcesPOCS = /* GraphQL */ `
+  query ListProjectsResourcesPOCS(
+    $filter: ModelProjectsResourcesPOCFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProjectsResourcesPOCS(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        projectName
+        businessDomain
+        resourceName
+        resourceRole
         createdAt
         updatedAt
       }

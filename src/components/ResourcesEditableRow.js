@@ -19,24 +19,33 @@ const ResourcesEditableRow = ({
         ></input>
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Resource type"
-          name="resourceType"
+      <select
           value={editFormData.resourceType}
           onChange={handleEditFormChange}
-        ></input>
+          name="resourceType"
+          required="required"
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >FTE or Contractor</option>
+          <option id="1" >FTE</option>
+          <option id="2" >CTR</option>
+          </select>
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Resource role"
-          name="resourceRole"
+      <select
           value={editFormData.resourceRole}
           onChange={handleEditFormChange}
-        ></input>
+          name="resourceRole"
+          required="required"
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Role</option>
+          <option id="1" >Engineer</option>
+          <option id="2" >Integration Engineer</option>
+          <option id="3" >BSA</option>
+          <option id="4" >PM</option>
+          <option id="5" >TPM</option>
+        </select>
       </td>
       <td>
         <button type="submit">Save</button>

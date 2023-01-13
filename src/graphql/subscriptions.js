@@ -1,9 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateResource = /* GraphQL */ `
-  subscription OnCreateResource($filter: ModelSubscriptionResourceFilterInput) {
-    onCreateResource(filter: $filter) {
+export const onCreateResourcePOC = /* GraphQL */ `
+  subscription OnCreateResourcePOC(
+    $filter: ModelSubscriptionResourcePOCFilterInput
+  ) {
+    onCreateResourcePOC(filter: $filter) {
       id
       resourceName
       resourceType
@@ -13,9 +15,11 @@ export const onCreateResource = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateResource = /* GraphQL */ `
-  subscription OnUpdateResource($filter: ModelSubscriptionResourceFilterInput) {
-    onUpdateResource(filter: $filter) {
+export const onUpdateResourcePOC = /* GraphQL */ `
+  subscription OnUpdateResourcePOC(
+    $filter: ModelSubscriptionResourcePOCFilterInput
+  ) {
+    onUpdateResourcePOC(filter: $filter) {
       id
       resourceName
       resourceType
@@ -25,9 +29,11 @@ export const onUpdateResource = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteResource = /* GraphQL */ `
-  subscription OnDeleteResource($filter: ModelSubscriptionResourceFilterInput) {
-    onDeleteResource(filter: $filter) {
+export const onDeleteResourcePOC = /* GraphQL */ `
+  subscription OnDeleteResourcePOC(
+    $filter: ModelSubscriptionResourcePOCFilterInput
+  ) {
+    onDeleteResourcePOC(filter: $filter) {
       id
       resourceName
       resourceType
@@ -37,9 +43,11 @@ export const onDeleteResource = /* GraphQL */ `
     }
   }
 `;
-export const onCreateProject = /* GraphQL */ `
-  subscription OnCreateProject($filter: ModelSubscriptionProjectFilterInput) {
-    onCreateProject(filter: $filter) {
+export const onCreateProjectPOC = /* GraphQL */ `
+  subscription OnCreateProjectPOC(
+    $filter: ModelSubscriptionProjectPOCFilterInput
+  ) {
+    onCreateProjectPOC(filter: $filter) {
       id
       projectName
       projectDescription
@@ -55,9 +63,11 @@ export const onCreateProject = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateProject = /* GraphQL */ `
-  subscription OnUpdateProject($filter: ModelSubscriptionProjectFilterInput) {
-    onUpdateProject(filter: $filter) {
+export const onUpdateProjectPOC = /* GraphQL */ `
+  subscription OnUpdateProjectPOC(
+    $filter: ModelSubscriptionProjectPOCFilterInput
+  ) {
+    onUpdateProjectPOC(filter: $filter) {
       id
       projectName
       projectDescription
@@ -73,9 +83,11 @@ export const onUpdateProject = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteProject = /* GraphQL */ `
-  subscription OnDeleteProject($filter: ModelSubscriptionProjectFilterInput) {
-    onDeleteProject(filter: $filter) {
+export const onDeleteProjectPOC = /* GraphQL */ `
+  subscription OnDeleteProjectPOC(
+    $filter: ModelSubscriptionProjectPOCFilterInput
+  ) {
+    onDeleteProjectPOC(filter: $filter) {
       id
       projectName
       projectDescription
@@ -86,6 +98,51 @@ export const onDeleteProject = /* GraphQL */ `
       bsaFTEneed
       pmFTEneed
       tpmFTEneed
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateProjectsResourcesPOC = /* GraphQL */ `
+  subscription OnCreateProjectsResourcesPOC(
+    $filter: ModelSubscriptionProjectsResourcesPOCFilterInput
+  ) {
+    onCreateProjectsResourcesPOC(filter: $filter) {
+      id
+      projectName
+      businessDomain
+      resourceName
+      resourceRole
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateProjectsResourcesPOC = /* GraphQL */ `
+  subscription OnUpdateProjectsResourcesPOC(
+    $filter: ModelSubscriptionProjectsResourcesPOCFilterInput
+  ) {
+    onUpdateProjectsResourcesPOC(filter: $filter) {
+      id
+      projectName
+      businessDomain
+      resourceName
+      resourceRole
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteProjectsResourcesPOC = /* GraphQL */ `
+  subscription OnDeleteProjectsResourcesPOC(
+    $filter: ModelSubscriptionProjectsResourcesPOCFilterInput
+  ) {
+    onDeleteProjectsResourcesPOC(filter: $filter) {
+      id
+      projectName
+      businessDomain
+      resourceName
+      resourceRole
       createdAt
       updatedAt
     }

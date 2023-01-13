@@ -10,15 +10,16 @@ import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
 import { API } from "aws-amplify";
-import { listResources } from "./graphql/queries";
+import { listResourcePOCS } from "./graphql/queries";
 import {
-  createResource as createResourceMutation,
-  updateResource as updateResourceMutation,
-  deleteResource as deleteResourceMutation,
+  createResourcePOC as createResourceMutation,
+  updateResourcePOC as updateResourceMutation,
+  deleteResourcePOC as deleteResourceMutation,
 } from "./graphql/mutations";
 
 import ReactDOM from "react-dom";
 import App from "./App";
+import ProjectsResources from "./ProjectsResources";
 
 const Resources = ({ signOut }) => {
   const [resources, setResources] = useState([]);
@@ -33,8 +34,8 @@ const Resources = ({ signOut }) => {
   }, []);
 
   async function fetchResources() {
-    const apiData = await API.graphql({ query: listResources });
-    const resourcesFromAPI = apiData.data.listResources.items;
+    const apiData = await API.graphql({ query: listResourcePOCS });
+    const resourcesFromAPI = apiData.data.listResourcePOCS.items;
     setResources(resourcesFromAPI);
   }
 
@@ -151,10 +152,22 @@ const Resources = ({ signOut }) => {
     );
   };
 
+  async function handleProjectsResourcesClick(id) {
+    ReactDOM.render(
+      <React.StrictMode>
+        <ProjectsResources />
+      </React.StrictMode>,
+      document.getElementById("root")
+    );
+  };
+
   return (
     <div className="app-container">
     <t1><button type="button" onClick={handleProjectsClick}>
           Go To Projects
+        </button>
+        <button type="button" onClick={handleProjectsResourcesClick}>
+          Go To Projects with Resources
         </button></t1>
       <h2>Resources</h2>
       <form onSubmit={handleEditFormSubmit}>
@@ -200,23 +213,30 @@ const Resources = ({ signOut }) => {
           onChange={handleAddFormChange}
         />
         <br />
-        <input
-          type="text"
+        <select
+          onChange={handleAddFormChange}
           name="resourceType"
           required="required"
-          placeholder="Type (FTE or CTR)"
-          style={{width: "350px"}}
-          onChange={handleAddFormChange}
-        />
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >FTE or Contractor</option>
+          <option id="1" >FTE</option>
+          <option id="2" >CTR</option>
+        </select>
         <br />
-        <input
-          type="text"
+          <select
+          onChange={handleAddFormChange}
           name="resourceRole"
           required="required"
-          placeholder="Role (Eng, Integration Eng, BSA, PM, TPM)"
-          style={{width: "350px"}}
-          onChange={handleAddFormChange}
-          />
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Role</option>
+          <option id="1" >Engineer</option>
+          <option id="2" >Integration Engineer</option>
+          <option id="3" >BSA</option>
+          <option id="4" >PM</option>
+          <option id="5" >TPM</option>
+        </select>
         <br /><br />
         <button type="submit">Add</button>
       </form>

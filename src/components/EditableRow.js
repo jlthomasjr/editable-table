@@ -29,24 +29,36 @@ const EditableRow = ({
         ></input>
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Business domain"
-          name="businessDomain"
-          value={editFormData.businessDomain}
+      <select
           onChange={handleEditFormChange}
-        ></input>
+          value={editFormData.businessDomain}
+          name="businessDomain"
+          required="required"
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Business domain</option>
+          <option id="1" >Finance</option>
+          <option id="2" >HR</option>
+          <option id="3" >CX</option>
+          <option id="4" >Marketing</option>
+          <option id="5" >Legal</option>
+          <option id="6" >GRC</option>
+          </select>
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Priority (P0, P1...)"
-          name="projectPriority"
-          value={editFormData.projectPriority}
+      <select
           onChange={handleEditFormChange}
-        ></input>
+          value={editFormData.projectPriority}
+          name="projectPriority"
+          required="required"
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Priority</option>
+          <option id="1" >P0</option>
+          <option id="2" >P1</option>
+          <option id="3" >P2</option>
+          <option id="4" >P3</option>
+        </select>
       </td>
       <td>
         <input

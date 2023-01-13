@@ -9,13 +9,15 @@ import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
 import { API } from "aws-amplify";
-import { listProjects } from "./graphql/queries";
+import { listProjectPOCS } from "./graphql/queries";
 import {
-  createProject as createProjectMutation,
-  updateProject as updateProjectMutation,
-  deleteProject as deleteProjectMutation,
+  createProjectPOC as createProjectMutation,
+  updateProjectPOC as updateProjectMutation,
+  deleteProjectPOC as deleteProjectMutation,
 } from "./graphql/mutations";
+
 import Resources from "./Resources";
+import ProjectsResources from "./ProjectsResources";
 
 import ReactDOM from "react-dom";
 
@@ -38,8 +40,13 @@ const App = ({ signOut }) => {
   }, []);
 
   async function fetchProjects() {
-    const apiData = await API.graphql({ query: listProjects });
-    const projectsFromAPI = apiData.data.listProjects.items;
+    console.log("Running fetchProjects")
+    const apiData = await API.graphql({ query: listProjectPOCS });
+    console.log("Projects from API pre")
+    console.log(apiData)
+    const projectsFromAPI = apiData.data.listProjectPOCS.items;
+    console.log("Projects from API post")
+    console.log(projectsFromAPI)
     setProjects(projectsFromAPI);
   }
 
@@ -64,6 +71,8 @@ const App = ({ signOut }) => {
     const newFormData = { ...addFormData };
     newFormData[fieldName] = fieldValue;
     setAddFormData(newFormData);
+    console.log("New form data")
+    console.log(newFormData)
   };
 
   const handleEditFormChange = (event) => {
@@ -180,10 +189,22 @@ const App = ({ signOut }) => {
     );
   };
 
+  async function handleProjectsResourcesClick(id) {
+    ReactDOM.render(
+      <React.StrictMode>
+        <ProjectsResources />
+      </React.StrictMode>,
+      document.getElementById("root")
+    );
+  };
+
   return (
     <div className="app-container">
     <t1><button type="button" onClick={handleResourcesClick}>
           Go To Resources
+        </button>
+        <button type="button" onClick={handleProjectsResourcesClick}>
+          Go To Projects with Resources
         </button></t1>
         <h2>Projects</h2>
       <form onSubmit={handleEditFormSubmit}>
@@ -244,28 +265,37 @@ const App = ({ signOut }) => {
           onChange={handleAddFormChange}
         />
         <br />
-        <input
-          type="text"
+          <select
+          onChange={handleAddFormChange}
           name="businessDomain"
           required="required"
-          placeholder="Domain (Finance, HR...)"
-          style={{width: "350px"}}
-          onChange={handleAddFormChange}
-          />
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Business domain</option>
+          <option id="1" >Finance</option>
+          <option id="2" >HR</option>
+          <option id="3" >CX</option>
+          <option id="4" >Marketing</option>
+          <option id="5" >Legal</option>
+          <option id="6" >GRC</option>
+          </select>
           <br />
-        <input
-          type="text"
+        <select
+          onChange={handleAddFormChange}
           name="projectPriority"
           required="required"
-          placeholder="Priority (P0, P1...)"
-          style={{width: "350px"}}
-          onChange={handleAddFormChange}
-        />
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Priority</option>
+          <option id="1" >P0</option>
+          <option id="2" >P1</option>
+          <option id="3" >P2</option>
+          <option id="4" >P3</option>
+        </select>
         <br />
         <input
           type="number"
           name="engFTEneed"
-          required="required"
           placeholder="Eng hrs"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
@@ -274,7 +304,6 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="intengFTEneed"
-          required="required"
           placeholder="Integration Eng hrs"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
@@ -283,7 +312,6 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="bsaFTEneed"
-          required="required"
           placeholder="BSA hrs"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
@@ -301,7 +329,6 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="tpmFTEneed"
-          required="required"
           placeholder="TPM hrs"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
