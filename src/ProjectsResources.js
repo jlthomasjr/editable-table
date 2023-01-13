@@ -10,6 +10,7 @@ import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
 import { API } from "aws-amplify";
+//import { listProjectsResourcesPOCS,listProjectNames } from "./graphql/queries";
 import { listProjectsResourcesPOCS } from "./graphql/queries";
 import {
   createProjectsResourcesPOC as createProjectsResourcesMutation,
@@ -23,11 +24,12 @@ import Resources from "./Resources";
 
 const ProjectsResources = ({ signOut }) => {
   const [projectsresources, setProjectsResources] = useState([]);
+  //const [projectnames, setProjectNames] = useState([]);
   const [addFormData, setAddFormData] = useState({
-    projectName: "",
-    businessDomain: "",
-    resourceName: "",
-    resourceRole: "",
+    projectName_pr: "",
+    businessDomain_pr: "",
+    resourceName_pr: "",
+    resourceRole_pr: "",
   });
 
   useEffect(() => {
@@ -39,12 +41,32 @@ const ProjectsResources = ({ signOut }) => {
     const projectsresourcesFromAPI = apiData.data.listProjectsResourcesPOCS.items;
     setProjectsResources(projectsresourcesFromAPI);
   }
+  console.log("Projects resources")
+  console.log(projectsresources)
+/*
+  useEffect(() => {
+    fetchProjectNames();
+  }, []);
+
+  async function fetchProjectNames() {
+    const apiData_Names = await API.graphql({ query: listProjectNames });
+    const projectnamesFromAPI = apiData_Names.data.listProjectNames.items;
+    setProjectNames(projectnamesFromAPI);
+  }
+  console.log("Project names")
+  console.log(projectnames)
+*/
+  /*
+  async function renderProjectList() {
+    return (this.state.responseData.map(data =>({label:data.Name,value:data.value})))
+   }
+   */
 
   const [editFormData, setEditFormData] = useState({
-    projectName: "",
-    businessDomain: "",
-    resourceName: "",
-    resourceRole: "",
+    projectName_pr: "",
+    businessDomain_pr: "",
+    resourceName_pr: "",
+    resourceRole_pr: "",
   });
 
   const [editProjectResourceId, setEditProjectResourceId] = useState(null);
@@ -72,10 +94,10 @@ const ProjectsResources = ({ signOut }) => {
     event.preventDefault();
     const newProjectResource = {
       id: nanoid(),
-      projectName: addFormData.projectName,
-      businessDomain: addFormData.businessDomain,
-      resourceName: addFormData.resourceName,
-      resourceRole: addFormData.resourceRole,
+      projectName_pr: addFormData.projectName_pr,
+      businessDomain_pr: addFormData.businessDomain_pr,
+      resourceName_pr: addFormData.resourceName_pr,
+      resourceRole_pr: addFormData.resourceRole_pr,
     };
     await API.graphql({
       query: createProjectsResourcesMutation,
@@ -89,10 +111,10 @@ const ProjectsResources = ({ signOut }) => {
     event.preventDefault();
     const editedProjectResource = {
       id: editProjectResourceId,
-      projectName: editFormData.projectName,
-      businessDomain: editFormData.businessDomain,
-      resourceName: editFormData.resourceName,
-      resourceRole: editFormData.resourceRole,
+      projectName_pr: editFormData.projectName_pr,
+      businessDomain_pr: editFormData.businessDomain_pr,
+      resourceName_pr: editFormData.resourceName_pr,
+      resourceRole_pr: editFormData.resourceRole_pr,
     };
 
     //const newProjects = [...projects];
@@ -116,10 +138,10 @@ const ProjectsResources = ({ signOut }) => {
     setEditProjectResourceId(projectresource.id);
 
     const formValues = {
-      projectName: projectresource.projectName,
-      businessDomain: projectresource.businesDomain,
-      resourceName: projectresource.projectresourceRole,
-      resourceRole: projectresource.resourceRole,
+      projectName_pr: projectresource.projectName_pr,
+      businessDomain_pr: projectresource.businesDomain,
+      resourceName_pr: projectresource.projectresourceRole,
+      resourceRole_pr: projectresource.resourceRole_pr,
     };
 
     setEditFormData(formValues);
@@ -212,7 +234,7 @@ const ProjectsResources = ({ signOut }) => {
       <form onSubmit={handleAddFormSubmit}>
       <select
           onChange={handleAddFormChange}
-          name="projectName"
+          name="projectName_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
@@ -222,7 +244,7 @@ const ProjectsResources = ({ signOut }) => {
         <br />
         <select
           onChange={handleAddFormChange}
-          name="businessDomain"
+          name="businessDomain_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
@@ -232,7 +254,7 @@ const ProjectsResources = ({ signOut }) => {
         <br />
           <select
           onChange={handleAddFormChange}
-          name="resourceName"
+          name="resourceName_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
@@ -242,7 +264,7 @@ const ProjectsResources = ({ signOut }) => {
         <br />
           <select
           onChange={handleAddFormChange}
-          name="resourceRole"
+          name="resourceRole_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >

@@ -88,10 +88,10 @@ type EagerProjectsResourcesPOC = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly projectName: string;
-  readonly businessDomain?: string | null;
-  readonly resourceName: string;
-  readonly resourceRole?: string | null;
+  readonly projectName_pr: string;
+  readonly businessDomain_pr?: string | null;
+  readonly resourceName_pr: string;
+  readonly resourceRole_pr?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -102,10 +102,10 @@ type LazyProjectsResourcesPOC = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly projectName: string;
-  readonly businessDomain?: string | null;
-  readonly resourceName: string;
-  readonly resourceRole?: string | null;
+  readonly projectName_pr: string;
+  readonly businessDomain_pr?: string | null;
+  readonly resourceName_pr: string;
+  readonly resourceRole_pr?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

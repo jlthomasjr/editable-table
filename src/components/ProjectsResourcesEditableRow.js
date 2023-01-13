@@ -10,9 +10,9 @@ const ProjectsResourcesEditableRow = ({
     <tr>
       <td>
       <select
-          value={editFormData.projectName}
+          value={editFormData.projectName_pr}
           onChange={handleEditFormChange}
-          name="projectName"
+          name="projectName_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
@@ -22,9 +22,9 @@ const ProjectsResourcesEditableRow = ({
       </td>
       <td>
       <select
-          value={editFormData.businessDomain}
+          value={editFormData.businessDomain_pr}
           onChange={handleEditFormChange}
-          name="businessDomain"
+          name="businessDomain_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
@@ -34,9 +34,9 @@ const ProjectsResourcesEditableRow = ({
       </td>
       <td>
       <select
-          value={editFormData.resourceName}
+          value={editFormData.resourceName_pr}
           onChange={handleEditFormChange}
-          name="resourceName"
+          name="resourceName_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
@@ -46,9 +46,9 @@ const ProjectsResourcesEditableRow = ({
       </td>
       <td>
       <select
-          value={editFormData.resourceRole}
+          value={editFormData.resourceRole_pr}
           onChange={handleEditFormChange}
-          name="resourceRole"
+          name="resourceRole_pr"
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >

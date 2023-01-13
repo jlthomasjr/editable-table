@@ -198,29 +198,29 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "projectName": {
-                    "name": "projectName",
+                "projectName_pr": {
+                    "name": "projectName_pr",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "businessDomain": {
-                    "name": "businessDomain",
+                "businessDomain_pr": {
+                    "name": "businessDomain_pr",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "resourceName": {
-                    "name": "resourceName",
+                "resourceName_pr": {
+                    "name": "resourceName_pr",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "resourceRole": {
-                    "name": "resourceRole",
+                "resourceRole_pr": {
+                    "name": "resourceRole_pr",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -272,5 +272,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "7fb80d6ff35f2f813b3a61e3c6508d7c"
+    "version": "b6b11cdec4fa9846b7c5656d2eeef542"
 };

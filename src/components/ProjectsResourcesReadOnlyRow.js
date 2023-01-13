@@ -3,10 +3,10 @@ import React from "react";
 const ProjectsResourcesReadOnlyRow = ({ projectresource, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
-      <td>{projectresource.projectName}</td>
-      <td>{projectresource.businessDomain}</td>
-      <td>{projectresource.resourceName}</td>
-      <td>{projectresource.resourceRole}</td>
+      <td>{projectresource.projectName_pr}</td>
+      <td>{projectresource.businessDomain_pr}</td>
+      <td>{projectresource.resourceName_pr}</td>
+      <td>{projectresource.resourceRole_pr}</td>
       <td>
         <button
           type="button"

@@ -20,9 +20,9 @@ type ProjectPOC @model @auth(rules: [{allow: public}]) {
 
 type ProjectsResourcesPOC @model @auth(rules: [{allow: public}]) {
   id: ID!
-  projectName: String!
-  businessDomain: String
-  resourceName: String!
-  resourceRole: String
+  projectName_pr: String!
+  businessDomain_pr: String
+  resourceName_pr: String!
+  resourceRole_pr: String
 }
  

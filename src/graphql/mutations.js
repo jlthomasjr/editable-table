@@ -116,10 +116,10 @@ export const createProjectsResourcesPOC = /* GraphQL */ `
   ) {
     createProjectsResourcesPOC(input: $input, condition: $condition) {
       id
-      projectName
-      businessDomain
-      resourceName
-      resourceRole
+      projectName_pr
+      businessDomain_pr
+      resourceName_pr
+      resourceRole_pr
       createdAt
       updatedAt
     }
@@ -132,10 +132,10 @@ export const updateProjectsResourcesPOC = /* GraphQL */ `
   ) {
     updateProjectsResourcesPOC(input: $input, condition: $condition) {
       id
-      projectName
-      businessDomain
-      resourceName
-      resourceRole
+      projectName_pr
+      businessDomain_pr
+      resourceName_pr
+      resourceRole_pr
       createdAt
       updatedAt
     }
@@ -148,10 +148,10 @@ export const deleteProjectsResourcesPOC = /* GraphQL */ `
   ) {
     deleteProjectsResourcesPOC(input: $input, condition: $condition) {
       id
-      projectName
-      businessDomain
-      resourceName
-      resourceRole
+      projectName_pr
+      businessDomain_pr
+      resourceName_pr
+      resourceRole_pr
       createdAt
       updatedAt
     }

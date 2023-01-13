@@ -109,10 +109,10 @@ export const onCreateProjectsResourcesPOC = /* GraphQL */ `
   ) {
     onCreateProjectsResourcesPOC(filter: $filter) {
       id
-      projectName
-      businessDomain
-      resourceName
-      resourceRole
+      projectName_pr
+      businessDomain_pr
+      resourceName_pr
+      resourceRole_pr
       createdAt
       updatedAt
     }
@@ -124,10 +124,10 @@ export const onUpdateProjectsResourcesPOC = /* GraphQL */ `
   ) {
     onUpdateProjectsResourcesPOC(filter: $filter) {
       id
-      projectName
-      businessDomain
-      resourceName
-      resourceRole
+      projectName_pr
+      businessDomain_pr
+      resourceName_pr
+      resourceRole_pr
       createdAt
       updatedAt
     }
@@ -139,10 +139,10 @@ export const onDeleteProjectsResourcesPOC = /* GraphQL */ `
   ) {
     onDeleteProjectsResourcesPOC(filter: $filter) {
       id
-      projectName
-      businessDomain
-      resourceName
-      resourceRole
+      projectName_pr
+      businessDomain_pr
+      resourceName_pr
+      resourceRole_pr
       createdAt
       updatedAt
     }

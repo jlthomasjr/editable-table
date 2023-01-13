@@ -79,10 +79,10 @@ export const getProjectsResourcesPOC = /* GraphQL */ `
   query GetProjectsResourcesPOC($id: ID!) {
     getProjectsResourcesPOC(id: $id) {
       id
-      projectName
-      businessDomain
-      resourceName
-      resourceRole
+      projectName_pr
+      businessDomain_pr
+      resourceName_pr
+      resourceRole_pr
       createdAt
       updatedAt
     }
@@ -101,10 +101,10 @@ export const listProjectsResourcesPOCS = /* GraphQL */ `
     ) {
       items {
         id
-        projectName
-        businessDomain
-        resourceName
-        resourceRole
+        projectName_pr
+        businessDomain_pr
+        resourceName_pr
+        resourceRole_pr
         createdAt
         updatedAt
       }
