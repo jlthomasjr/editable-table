@@ -1,8 +1,13 @@
 import React from "react";
 import "../App.css";
+//import "../ProjectsResources";
+
+//console.log(projectnames)
 
 const ProjectsResourcesEditableRow = ({
   editFormData,
+  projectnames,
+  resourcenames,
   handleEditFormChange,
   handleCancelClick,
 }) => {
@@ -16,21 +21,10 @@ const ProjectsResourcesEditableRow = ({
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
-          <option id="0" >Project Name</option>
-          <option id="1" >Build dynamic population from Projects table</option>
-        </select>
-      </td>
-      <td>
-      <select
-          value={editFormData.businessDomain_pr}
-          onChange={handleEditFormChange}
-          name="businessDomain_pr"
-          required="required"
-          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
-          >
-          <option id="0" >Business Domain</option>
-          <option id="1" >Build dynamic population based on Project Name</option>
-        </select>
+         {projectnames.map(item => {
+                  return (<option key={item.value} value={item.value}>{item.text}</option>);
+              })}
+      </select>
       </td>
       <td>
       <select
@@ -40,20 +34,9 @@ const ProjectsResourcesEditableRow = ({
           required="required"
           style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
           >
-          <option id="0" >Resource Name</option>
-          <option id="1" >Build dynamic populationn from Resources table</option>
-        </select>
-      </td>
-      <td>
-      <select
-          value={editFormData.resourceRole_pr}
-          onChange={handleEditFormChange}
-          name="resourceRole_pr"
-          required="required"
-          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
-          >
-          <option id="0" >Role</option>
-          <option id="1" >Build dynamic population based on Resource Name</option>
+          {resourcenames.map(item => {
+                  return (<option key={item.value} value={item.value}>{item.text}</option>);
+              })}
         </select>
       </td>
       <td>

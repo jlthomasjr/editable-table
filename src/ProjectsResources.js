@@ -10,8 +10,8 @@ import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
 import { API } from "aws-amplify";
-//import { listProjectsResourcesPOCS,listProjectNames } from "./graphql/queries";
-import { listProjectsResourcesPOCS } from "./graphql/queries";
+import { listProjectsResourcesPOCS,listProjectPOCS,listResourcePOCS } from "./graphql/queries";
+//import { listProjectsResourcesPOCS } from "./graphql/queries";
 import {
   createProjectsResourcesPOC as createProjectsResourcesMutation,
   updateProjectsResourcesPOC as updateProjectsResourcesMutation,
@@ -22,9 +22,15 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Resources from "./Resources";
 
+import ReadOnlyRowNoButtons from "./components/ReadOnlyRowNoButtons";
+import ResourcesReadOnlyRowNoButtons from "./components/ResourcesReadOnlyRowNoButtons"; 
+
 const ProjectsResources = ({ signOut }) => {
   const [projectsresources, setProjectsResources] = useState([]);
-  //const [projectnames, setProjectNames] = useState([]);
+  const [projectnames, setProjectNames] = useState([]);
+  const [resourcenames, setResourceNames] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [resources, setResources] = useState([]);
   const [addFormData, setAddFormData] = useState({
     projectName_pr: "",
     businessDomain_pr: "",
@@ -41,26 +47,35 @@ const ProjectsResources = ({ signOut }) => {
     const projectsresourcesFromAPI = apiData.data.listProjectsResourcesPOCS.items;
     setProjectsResources(projectsresourcesFromAPI);
   }
-  console.log("Projects resources")
-  console.log(projectsresources)
-/*
+
+    console.log("projectsresources")
+    console.log(projectsresources)
+
   useEffect(() => {
     fetchProjectNames();
   }, []);
 
   async function fetchProjectNames() {
-    const apiData_Names = await API.graphql({ query: listProjectNames });
-    const projectnamesFromAPI = apiData_Names.data.listProjectNames.items;
+    const apiData_Names = await API.graphql({ query: listProjectPOCS });
+    const projectnamesFromAPI = apiData_Names.data.listProjectPOCS.items.map(projectnames => ({
+      value: projectnames.projectName,
+      text: projectnames.projectName,
+  }));
     setProjectNames(projectnamesFromAPI);
   }
-  console.log("Project names")
-  console.log(projectnames)
-*/
-  /*
-  async function renderProjectList() {
-    return (this.state.responseData.map(data =>({label:data.Name,value:data.value})))
-   }
-   */
+
+  useEffect(() => {
+    fetchResourceNames();
+  }, []);
+
+  async function fetchResourceNames() {
+    const apiData_ResourceNames = await API.graphql({ query: listResourcePOCS });
+    const resourcenamesFromAPI = apiData_ResourceNames.data.listResourcePOCS.items.map(resourcenames => ({
+      value: resourcenames.resourceName,
+      text: resourcenames.resourceName,
+  }));
+    setResourceNames(resourcenamesFromAPI);
+  }
 
   const [editFormData, setEditFormData] = useState({
     projectName_pr: "",
@@ -78,7 +93,26 @@ const ProjectsResources = ({ signOut }) => {
     const newFormData = { ...addFormData };
     newFormData[fieldName] = fieldValue;
     setAddFormData(newFormData);
+    //console.log("addFormData")
+    //console.log(addFormData)
+
+    fetchProjects();
+    fetchResources();
   };
+
+  async function fetchProjects() {
+    const apiData = await API.graphql({ query: listProjectPOCS });
+    const projectsFromAPI = apiData.data.listProjectPOCS.items;
+    setProjects(projectsFromAPI);
+  }
+
+  async function fetchResources() {
+    const apiData_Resources = await API.graphql({ query: listResourcePOCS });
+    const resourcesFromAPI = apiData_Resources.data.listResourcePOCS.items;
+    setResources(resourcesFromAPI);
+    //console.log("resourcesFromAPI")
+    //console.log(resourcesFromAPI)
+  }
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -87,7 +121,6 @@ const ProjectsResources = ({ signOut }) => {
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
     setEditFormData(newFormData);
-    //console.log("ran handleEditFormChange")
   };
 
   async function handleAddFormSubmit(event) {
@@ -104,7 +137,9 @@ const ProjectsResources = ({ signOut }) => {
       variables: { input: newProjectResource },
     });
     fetchProjectsResources();
-    event.target.reset();
+    //event.target.reset();
+    //addFormData.resourceName_pr = "";
+    //addFormData.projectName_pr = "";
   }
 
   async function handleEditFormSubmit(event) {
@@ -116,12 +151,6 @@ const ProjectsResources = ({ signOut }) => {
       resourceName_pr: editFormData.resourceName_pr,
       resourceRole_pr: editFormData.resourceRole_pr,
     };
-
-    //const newProjects = [...projects];
-    //const index = projects.findIndex((project) => project.id === editProjectId);
-    //newProjects[index] = editedProject;
-    //console.log("Running handleEditFormSubmit")
-    //console.log(editedProject)
 
     await API.graphql({
       query: updateProjectsResourcesMutation,
@@ -139,8 +168,8 @@ const ProjectsResources = ({ signOut }) => {
 
     const formValues = {
       projectName_pr: projectresource.projectName_pr,
-      businessDomain_pr: projectresource.businesDomain,
-      resourceName_pr: projectresource.projectresourceRole,
+      businessDomain_pr: projectresource.businesDomain_pr,
+      resourceName_pr: projectresource.resourceName_pr,
       resourceRole_pr: projectresource.resourceRole_pr,
     };
 
@@ -156,13 +185,6 @@ const ProjectsResources = ({ signOut }) => {
     const index = projectsresources.findIndex((projectresource) => projectresource.id === id);
     newProjectsResources.splice(index, 1);
     setProjectsResources(newProjectsResources);
-
-    //console.log("Running handleDeleteClick")
-    //console.log(projectId)
-    //console.log(id)
-    //console.log(projects)
-    //console.log(newProjects)
-    //console.log(deleteProject)
 
     await API.graphql({
       query: deleteProjectsResourcesMutation,
@@ -196,24 +218,52 @@ const ProjectsResources = ({ signOut }) => {
         <button type="button" onClick={handleResourcesClick}>
           Go To Resources
         </button></t1>
-      <h2>Projects with Resources</h2>
+      <h2>Add Resources to Projects</h2>
+      <form onSubmit={handleAddFormSubmit}>
+      <select
+          onChange={handleAddFormChange}
+          name="projectName_pr"
+          required="required"
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Project</option>
+          {projectnames.map(item => {
+                  return (<option key={item.value} value={item.value}>{item.text}</option>);
+              })}
+        </select>
+        <br />
+        <select
+          onChange={handleAddFormChange}
+          name="resourceName_pr"
+          required="required"
+          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
+          >
+          <option id="0" >Name</option>
+          {resourcenames.map(item => {
+                  return (<option key={item.value} value={item.value}>{item.text}</option>);
+              })}
+        </select>
+        <br /><br />
+        <button type="submit">Add</button>
+      </form>
+      <h2>Project Resources</h2>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <table><table1>
           <thead>
             <tr>
               <th>Project Name</th>
-              <th>Business Domain</th>
               <th>Resource Name</th>
-              <th>Resource Role</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {projectsresources.map((projectresource) => (
+            {projectsresources.filter(projres => projres.projectName_pr === addFormData.projectName_pr).map((projectresource) => (
               <Fragment>
                 {editProjectResourceId === projectresource.id ? (
                   <ProjectsResourcesEditableRow
                     editFormData={editFormData}
+                    projectnames={projectnames}
+                    resourcenames={resourcenames}
                     handleEditFormChange={handleEditFormChange}
                     handleCancelClick={handleCancelClick}
                   />
@@ -227,53 +277,48 @@ const ProjectsResources = ({ signOut }) => {
               </Fragment>
             ))}
           </tbody>
+          </table1></table>
+      </form>
+      <h2>Project Details</h2>
+      <table>
+          <thead>
+            <tr>
+              <th>Project Name</th>
+              <th>Project Description</th>
+              <th>Business Domain</th>
+              <th>Priority</th>
+              <th>Eng hrs</th>
+              <th>Int Eng hrs</th>
+              <th>BSA hrs</th>
+              <th>PM hrs</th>
+              <th>TPM hrs</th>
+            </tr>
+          </thead>
+          <tbody>
+            {projects.filter(proj => proj.projectName === addFormData.projectName_pr).map((project) => (
+              <ReadOnlyRowNoButtons
+              project={project}
+            />
+            ))}
+          </tbody>
         </table>
-      </form>
-
-      <h2>Add Resources to Projects</h2>
-      <form onSubmit={handleAddFormSubmit}>
-      <select
-          onChange={handleAddFormChange}
-          name="projectName_pr"
-          required="required"
-          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
-          >
-          <option id="0" >Project Name</option>
-          <option id="1" >Build dynamic population from Projects table</option>
-        </select>
-        <br />
-        <select
-          onChange={handleAddFormChange}
-          name="businessDomain_pr"
-          required="required"
-          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
-          >
-          <option id="0" >Business Domain</option>
-          <option id="1" >Build dynamic population based on Project Name</option>
-        </select>
-        <br />
-          <select
-          onChange={handleAddFormChange}
-          name="resourceName_pr"
-          required="required"
-          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
-          >
-          <option id="0" >Resource Name</option>
-          <option id="1" >Build dynamic populationn from Resources table</option>
-        </select>
-        <br />
-          <select
-          onChange={handleAddFormChange}
-          name="resourceRole_pr"
-          required="required"
-          style={{width: "350px", paddingTop: "4px", paddingBottom: "4px",fontWeight: "400"}}
-          >
-          <option id="0" >Role</option>
-          <option id="1" >Build dynamic population based on Resource Name</option>
-        </select>
-        <br /><br />
-        <button type="submit">Add</button>
-      </form>
+        <h2>Resource Details</h2>
+      <table><table1>
+          <thead>
+            <tr>
+              <th>Resource Name</th>
+              <th>Resource Type</th>
+              <th>Resource Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {resources.filter(res => res.resourceName === addFormData.resourceName_pr).map((resource) => (
+              <ResourcesReadOnlyRowNoButtons
+              resource={resource}
+            />
+            ))}
+          </tbody>
+          </table1></table>
     </div>
   );
 };

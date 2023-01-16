@@ -122,12 +122,6 @@ const App = ({ signOut }) => {
       tpmFTEneed: editFormData.tpmFTEneed,
     };
 
-    //const newProjects = [...projects];
-    //const index = projects.findIndex((project) => project.id === editProjectId);
-    //newProjects[index] = editedProject;
-    //console.log("Running handleEditFormSubmit")
-    //console.log(editedProject)
-
     await API.graphql({
       query: updateProjectMutation,
       variables: { input: editedProject },
@@ -278,6 +272,10 @@ const App = ({ signOut }) => {
           <option id="4" >Marketing</option>
           <option id="5" >Legal</option>
           <option id="6" >GRC</option>
+          <option id="7" >Consumer</option>
+          <option id="8" >Institutional</option>
+          <option id="9" >Developer</option>
+          <option id="9" >Platform</option>
           </select>
           <br />
         <select
@@ -320,7 +318,6 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="pmFTEneed"
-          required="required"
           placeholder="PM hrs"
           style={{width: "175px"}}
           onChange={handleAddFormChange}

@@ -171,7 +171,7 @@ const Resources = ({ signOut }) => {
         </button></t1>
       <h2>Resources</h2>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <table><table1>
           <thead>
             <tr>
               <th>Resource Name</th>
@@ -199,7 +199,7 @@ const Resources = ({ signOut }) => {
               </Fragment>
             ))}
           </tbody>
-        </table>
+          </table1></table>
       </form>
 
       <h2>Add Resource</h2>

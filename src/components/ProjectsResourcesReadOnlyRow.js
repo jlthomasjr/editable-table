@@ -4,9 +4,7 @@ const ProjectsResourcesReadOnlyRow = ({ projectresource, handleEditClick, handle
   return (
     <tr>
       <td>{projectresource.projectName_pr}</td>
-      <td>{projectresource.businessDomain_pr}</td>
       <td>{projectresource.resourceName_pr}</td>
-      <td>{projectresource.resourceRole_pr}</td>
       <td>
         <button
           type="button"
