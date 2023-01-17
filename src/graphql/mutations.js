@@ -11,6 +11,7 @@ export const createResourcePOC = /* GraphQL */ `
       resourceName
       resourceType
       resourceRole
+      resourceHoursAllocated
       createdAt
       updatedAt
     }
@@ -26,6 +27,7 @@ export const updateResourcePOC = /* GraphQL */ `
       resourceName
       resourceType
       resourceRole
+      resourceHoursAllocated
       createdAt
       updatedAt
     }
@@ -41,6 +43,7 @@ export const deleteResourcePOC = /* GraphQL */ `
       resourceName
       resourceType
       resourceRole
+      resourceHoursAllocated
       createdAt
       updatedAt
     }

@@ -27,6 +27,7 @@ const Resources = ({ signOut }) => {
     resourceName: "",
     resourceType: "",
     resourceRole: "",
+    resourceHoursAllocated: "",
   });
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const Resources = ({ signOut }) => {
     resourceName: "",
     resourceType: "",
     resourceRole: "",
+    resourceHoursAllocated: "",
   });
 
   const [editResourceId, setEditResourceId] = useState(null);
@@ -73,6 +75,7 @@ const Resources = ({ signOut }) => {
       resourceName: addFormData.resourceName,
       resourceType: addFormData.resourceType,
       resourceRole: addFormData.resourceRole,
+      resourceHoursAllocated: addFormData.resourceHoursAllocated,
     };
     await API.graphql({
       query: createResourceMutation,
@@ -89,6 +92,7 @@ const Resources = ({ signOut }) => {
       resourceName: editFormData.resourceName,
       resourceType: editFormData.resourceType,
       resourceRole: editFormData.resourceRole,
+      resourceHoursAllocated: editFormData.resourceHoursAllocated,
     };
 
     //const newProjects = [...projects];
@@ -115,6 +119,7 @@ const Resources = ({ signOut }) => {
       resourceName: resource.resourceName,
       resourceType: resource.resourceType,
       resourceRole: resource.resourceRole,
+      resourceHoursAllocated: resource.resourceHoursAllocated,
     };
 
     setEditFormData(formValues);
@@ -177,6 +182,7 @@ const Resources = ({ signOut }) => {
               <th>Resource Name</th>
               <th>Resource Type</th>
               <th>Resource Role</th>
+              <th>Hours Allocated</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -208,7 +214,7 @@ const Resources = ({ signOut }) => {
           type="text"
           name="resourceName"
           required="required"
-          placeholder="First Name Last Name"
+          placeholder="First name last name"
           style={{width: "350px"}}
           onChange={handleAddFormChange}
         />
@@ -237,6 +243,14 @@ const Resources = ({ signOut }) => {
           <option id="4" >PM</option>
           <option id="5" >TPM</option>
         </select>
+        <br />
+        <input
+          type="number"
+          name="resourceHoursAllocated"
+          placeholder="Hours allocated"
+          style={{width: "350px"}}
+          onChange={handleAddFormChange}
+        />
         <br /><br />
         <button type="submit">Add</button>
       </form>

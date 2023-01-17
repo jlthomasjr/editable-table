@@ -71,8 +71,8 @@ const App = ({ signOut }) => {
     const newFormData = { ...addFormData };
     newFormData[fieldName] = fieldValue;
     setAddFormData(newFormData);
-    console.log("New form data")
-    console.log(newFormData)
+    //console.log("New form data")
+    //console.log(newFormData)
   };
 
   const handleEditFormChange = (event) => {

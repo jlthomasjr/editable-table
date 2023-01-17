@@ -3,6 +3,7 @@ type ResourcePOC @model @auth(rules: [{allow: public}]) {
   resourceName: String!
   resourceType: String
   resourceRole: String
+  resourceHoursAllocated: String
 }
 
 type ProjectPOC @model @auth(rules: [{allow: public}]) {

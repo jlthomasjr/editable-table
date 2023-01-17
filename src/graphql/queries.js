@@ -8,6 +8,7 @@ export const getResourcePOC = /* GraphQL */ `
       resourceName
       resourceType
       resourceRole
+      resourceHoursAllocated
       createdAt
       updatedAt
     }
@@ -25,6 +26,7 @@ export const listResourcePOCS = /* GraphQL */ `
         resourceName
         resourceType
         resourceRole
+        resourceHoursAllocated
         createdAt
         updatedAt
       }

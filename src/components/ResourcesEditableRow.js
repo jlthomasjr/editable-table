@@ -48,6 +48,15 @@ const ResourcesEditableRow = ({
         </select>
       </td>
       <td>
+        <input
+        type="number"
+        placeholder="Hours Allocated"
+        name="resourceHoursAllocated"
+        value={editFormData.resourceHoursAllocated}
+        onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
         <button type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>
           Cancel

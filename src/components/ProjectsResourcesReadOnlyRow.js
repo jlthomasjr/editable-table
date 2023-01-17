@@ -1,18 +1,13 @@
 import React from "react";
 
-const ProjectsResourcesReadOnlyRow = ({ projectresource, handleEditClick, handleDeleteClick }) => {
+const ProjectsResourcesReadOnlyRow = ({ projectresources, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
-      <td>{projectresource.projectName_pr}</td>
-      <td>{projectresource.resourceName_pr}</td>
+      <td>{projectresources.projectName_pr}</td>
+      <td>{projectresources.resourceName_pr}</td>
+      <td>{projectresources.resourceRole}</td>
       <td>
-        <button
-          type="button"
-          onClick={(event) => handleEditClick(event, projectresource)}
-        >
-          Edit
-        </button>
-        <button type="button" onClick={() => handleDeleteClick(projectresource.id)}>
+        <button type="button" onClick={() => handleDeleteClick(projectresources.id)}>
           Delete
         </button>
       </td>

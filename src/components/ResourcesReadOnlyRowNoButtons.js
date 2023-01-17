@@ -6,6 +6,7 @@ const ResourcesReadOnlyRowNoButtons = ({ resource, handleEditClick, handleDelete
       <td>{resource.resourceName}</td>
       <td>{resource.resourceType}</td>
       <td>{resource.resourceRole}</td>
+      <td>{resource.resourceHoursAllocated}</td>
     </tr>
   );
 };
