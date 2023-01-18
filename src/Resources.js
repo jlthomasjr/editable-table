@@ -7,7 +7,7 @@ import ResourcesEditableRow from "./components/ResourcesEditableRow";
 
 import "@aws-amplify/ui-react/styles.css";
 import {
-  withAuthenticator, Text
+  withAuthenticator
 } from '@aws-amplify/ui-react';
 import { API } from "aws-amplify";
 import { listResourcePOCS } from "./graphql/queries";
@@ -189,7 +189,7 @@ const Resources = ({ signOut }) => {
               <th>Resource Name</th>
               <th>Resource Type</th>
               <th>Resource Role</th>
-              <th>Hours Allocated</th>
+              <th>XS Allocated</th>
               <th>3-Month Utilization %</th>
               <th>12-Month Utilization %</th>
               <th>Actions</th>

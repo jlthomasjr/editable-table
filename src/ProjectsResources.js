@@ -424,11 +424,11 @@ const ProjectsResources = ({ signOut }) => {
               <th>Project Description</th>
               <th>Business Domain</th>
               <th>Priority</th>
-              <th>Eng hrs</th>
-              <th>Int Eng hrs</th>
-              <th>BSA hrs</th>
-              <th>PM hrs</th>
-              <th>TPM hrs</th>
+              <th>Eng XS</th>
+              <th>Int Eng XS</th>
+              <th>BSA XS</th>
+              <th>PM XS</th>
+              <th>TPM XS</th>
             </tr>
           </thead>
           <tbody>
@@ -446,7 +446,7 @@ const ProjectsResources = ({ signOut }) => {
               <th>Resource Name</th>
               <th>Resource Type</th>
               <th>Resource Role</th>
-              <th>Hours Allocated</th>
+              <th>XS Allocated</th>
             </tr>
           </thead>
           <tbody>

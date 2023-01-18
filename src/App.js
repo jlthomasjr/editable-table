@@ -209,11 +209,11 @@ const App = ({ signOut }) => {
               <th>Project Description</th>
               <th>Business Domain</th>
               <th>Priority</th>
-              <th>Eng hrs</th>
-              <th>Int Eng hrs</th>
-              <th>BSA hrs</th>
-              <th>PM hrs</th>
-              <th>TPM hrs</th>
+              <th>Eng XS</th>
+              <th>Int Eng XS</th>
+              <th>BSA XS</th>
+              <th>PM XS</th>
+              <th>TPM XS</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -294,7 +294,7 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="engFTEneed"
-          placeholder="Eng hrs"
+          placeholder="Eng XS"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
@@ -302,7 +302,7 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="intengFTEneed"
-          placeholder="Integration Eng hrs"
+          placeholder="Integration Eng XS"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
@@ -310,7 +310,7 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="bsaFTEneed"
-          placeholder="BSA hrs"
+          placeholder="BSA XS"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
@@ -318,7 +318,7 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="pmFTEneed"
-          placeholder="PM hrs"
+          placeholder="PM XS"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
@@ -326,7 +326,7 @@ const App = ({ signOut }) => {
         <input
           type="number"
           name="tpmFTEneed"
-          placeholder="TPM hrs"
+          placeholder="TPM XS"
           style={{width: "175px"}}
           onChange={handleAddFormChange}
         />
