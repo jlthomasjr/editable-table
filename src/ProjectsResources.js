@@ -207,15 +207,19 @@ const ProjectsResources = ({ signOut }) => {
         hours=0;
         resourceid=0;
       }
-
-      //console.log("****resource")
-      //console.log(o.resourceName)
       
       projectswithresources.forEach(function (c) {
+        console.log("****resource")
+        console.log(o.resourceName)
+        console.log(c.resourceName_pr)
+        console.log(o.resourceRole)
+        console.log(hours)
         if (o.resourceName === c.resourceName_pr && o.resourceRole === "Engineer") {
+          console.log("Engineer")
           hours = hours + c.engFTEneed;
         }
         else if (o.resourceName === c.resourceName_pr && o.resourceRole === "Integration Engineer") {
+          console.log("Integration Engineer")
           hours = hours + c.intengFTEneed;
         }
         else if (o.resourceName === c.resourceName_pr && o.resourceRole === "BSA") {

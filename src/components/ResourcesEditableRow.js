@@ -57,6 +57,24 @@ const ResourcesEditableRow = ({
         ></input>
       </td>
       <td>
+        <input
+        type="number"
+        placeholder="3-month utilization"
+        name="resourceQutil"
+        value={editFormData.resourceQutil}
+        onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
+        <input
+        type="number"
+        placeholder="12-month utilization"
+        name="resourceAutil"
+        value={editFormData.resourceAutil}
+        onChange={handleEditFormChange}
+        ></input>
+      </td>
+      <td>
         <button type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>
           Cancel

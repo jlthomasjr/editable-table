@@ -7,7 +7,7 @@ import ResourcesEditableRow from "./components/ResourcesEditableRow";
 
 import "@aws-amplify/ui-react/styles.css";
 import {
-  withAuthenticator,
+  withAuthenticator, Text
 } from '@aws-amplify/ui-react';
 import { API } from "aws-amplify";
 import { listResourcePOCS } from "./graphql/queries";
@@ -28,6 +28,8 @@ const Resources = ({ signOut }) => {
     resourceType: "",
     resourceRole: "",
     resourceHoursAllocated: "",
+    resourceQutil: "",
+    resourceAutil: "",
   });
 
   useEffect(() => {
@@ -45,6 +47,8 @@ const Resources = ({ signOut }) => {
     resourceType: "",
     resourceRole: "",
     resourceHoursAllocated: "",
+    resourceQutil: "",
+    resourceAutil: "",
   });
 
   const [editResourceId, setEditResourceId] = useState(null);
@@ -75,7 +79,6 @@ const Resources = ({ signOut }) => {
       resourceName: addFormData.resourceName,
       resourceType: addFormData.resourceType,
       resourceRole: addFormData.resourceRole,
-      resourceHoursAllocated: addFormData.resourceHoursAllocated,
     };
     await API.graphql({
       query: createResourceMutation,
@@ -93,6 +96,8 @@ const Resources = ({ signOut }) => {
       resourceType: editFormData.resourceType,
       resourceRole: editFormData.resourceRole,
       resourceHoursAllocated: editFormData.resourceHoursAllocated,
+      resourceQutil: editFormData.resourceQutil,
+      resourceAutil: editFormData.resourceAutil,
     };
 
     //const newProjects = [...projects];
@@ -120,6 +125,8 @@ const Resources = ({ signOut }) => {
       resourceType: resource.resourceType,
       resourceRole: resource.resourceRole,
       resourceHoursAllocated: resource.resourceHoursAllocated,
+      resourceQutil: editFormData.resourceQutil,
+      resourceAutil: editFormData.resourceAutil,
     };
 
     setEditFormData(formValues);
@@ -183,6 +190,8 @@ const Resources = ({ signOut }) => {
               <th>Resource Type</th>
               <th>Resource Role</th>
               <th>Hours Allocated</th>
+              <th>3-Month Utilization %</th>
+              <th>12-Month Utilization %</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -244,13 +253,6 @@ const Resources = ({ signOut }) => {
           <option id="5" >TPM</option>
         </select>
         <br />
-        <input
-          type="number"
-          name="resourceHoursAllocated"
-          placeholder="Hours allocated"
-          style={{width: "350px"}}
-          onChange={handleAddFormChange}
-        />
         <br /><br />
         <button type="submit">Add</button>
       </form>

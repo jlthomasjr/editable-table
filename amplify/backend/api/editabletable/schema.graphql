@@ -4,6 +4,8 @@ type ResourcePOC @model @auth(rules: [{allow: public}]) {
   resourceType: String
   resourceRole: String
   resourceHoursAllocated: String
+  resourceQutil: String
+  resourceAutil: String
 }
 
 type ProjectPOC @model @auth(rules: [{allow: public}]) {

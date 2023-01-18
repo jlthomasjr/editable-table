@@ -7,6 +7,8 @@ const ResourcesReadOnlyRow = ({ resource, handleEditClick, handleDeleteClick }) 
       <td>{resource.resourceType}</td>
       <td>{resource.resourceRole}</td>
       <td>{resource.resourceHoursAllocated}</td>
+      <td>{Math.round(Number(resource.resourceHoursAllocated)/Number(500)*100*100)/100}</td>
+      <td>{Math.round(Number(resource.resourceHoursAllocated)/Number(2000)*100*100)/100}</td>
       <td>
         <button
           type="button"
