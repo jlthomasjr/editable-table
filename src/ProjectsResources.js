@@ -41,6 +41,7 @@ const ProjectsResources = ({ signOut }) => {
 
   //Retrieve main dataset
   async function fetchProjectsResources() {
+    //console.log("Running fetchProjectsResources");
     const apiData = await API.graphql({ query: listProjectsResourcesPOCS });
     const projectsresourcesFromAPI = apiData.data.listProjectsResourcesPOCS.items;
     setProjectsResources(projectsresourcesFromAPI);
@@ -166,15 +167,15 @@ const ProjectsResources = ({ signOut }) => {
     });
 
     fetchProjectsResources();
-    fetchProjects();
-    fetchResources();
-    fetchProjectNames();
-    fetchResourceNames();
-    //event.target.reset();
-    //addFormData.resourceName_pr = "";
-    //addFormData.projectName_pr = "";
 
-    //Duplicate
+    projectsresources.push({
+      id: newProjectResource.id, 
+      projectName_pr: newProjectResource.projectName_pr, 
+      businessDomain_pr: null, 
+      resourceName_pr: newProjectResource.resourceName_pr,
+      resourceRole_pr: null, 
+    })
+
     //Join resources attributes to projectsresources
     var projectresources=[]; 
     resourceattr.forEach(function (o) {
@@ -183,7 +184,6 @@ const ProjectsResources = ({ signOut }) => {
       })
     });
 
-    //Duplicate
     //Join project attributes to projectsresources
     var resourceprojects=[]; 
     projectsresources.forEach(function (o) {
@@ -193,62 +193,78 @@ const ProjectsResources = ({ signOut }) => {
     });
     const projectswithresources = resourceprojects;
 
-    console.log("newProjectResource")
-    console.log(newProjectResource)
-    console.log("addFormData")
-    console.log(addFormData)
-    console.log("resourceattr")
-    console.log(resourceattr)
-    console.log("projectsresources")
-    console.log(projectsresources)
-    console.log("projectattr")
-    console.log(projectattr)
-
     //Add up hours of utilization for each resource
-    var countresources = resourceattr.length;
-    console.log("countresources")
-    console.log(countresources)
-    console.log(resourceattr)
-
-    var countprojectswithresources = projectswithresources.length;
-    console.log("countprojectswithresources")
-    console.log(countprojectswithresources)
-    console.log(projectswithresources)
-
     var hours=0;
     var resourceid=0;
 
-    resourceattr.forEach(function (o) {
-      console.log("resource")
-      console.log(o.resourceName)
+    resourceattr.forEach(function (o) {      
+      if (hours > 0) {
+        //update the resource record
+        //console.log("calling handleHoursAllocationUpdate")
+        handleHoursAllocationUpdate();
+        //console.log("calling handleHoursAllocationDbUpdate")
+        handleHoursAllocationDbUpdate();
+        hours=0;
+        resourceid=0;
+      }
+
+      //console.log("****resource")
+      //console.log(o.resourceName)
+      
       projectswithresources.forEach(function (c) {
         if (o.resourceName === c.resourceName_pr && o.resourceRole === "Engineer") {
-          console.log("Inside for each engineer");
-          console.log(c.projectName_pr)
-          console.log(c.engFTEneed);
-          
           hours = hours + c.engFTEneed;
-          console.log("hours")
-          console.log(hours)
         }
+        else if (o.resourceName === c.resourceName_pr && o.resourceRole === "Integration Engineer") {
+          hours = hours + c.intengFTEneed;
+        }
+        else if (o.resourceName === c.resourceName_pr && o.resourceRole === "BSA") {
+          hours = hours + c.bsaFTEneed;
+        }
+        else if (o.resourceName === c.resourceName_pr && o.resourceRole === "TPM") {
+          hours = hours + c.tpmFTEneed;
+        }
+        else if (o.resourceName === c.resourceName_pr && o.resourceRole === "PM") {
+          hours = hours + c.pmFTEneed;
+        }
+        resourceid=o.id;
       })
-      //update the resource record
-      resourceid=o.id;
-      handleHoursAllocationUpdate();
-      hours=0;
-      resourceid=0;
     });
 
     async function handleHoursAllocationUpdate() {
-      console.log("resourceid")
-      console.log(resourceid)
-      console.log(hours)
+      //console.log("resourceid")
+      //console.log(resourceid)
+      //console.log(hours)
+
+      resources.forEach(function (o) {
+
+        //console.log(o.resourceName)
+        //console.log(o.id)
+        //console.log(resourceid)
+        //console.log(hours)
+  
+        if(o.id === resourceid) {
+          //console.log("Updating hours")
+          //console.log(o.resourceName)
+          //console.log(hours)
+          //console.log(o.resourceHoursAllocated)
+          o.resourceHoursAllocated = hours;
+          //console.log(o.resourceHoursAllocated)
+        }
+      })
+    }
+
+    async function handleHoursAllocationDbUpdate() {
+      //console.log("resourceid")
+      //console.log(resourceid)
       const editedResource = {
         id: resourceid,
         resourceHoursAllocated: hours,
       };
-      console.log("editedResource")
-      console.log(editedResource)
+      //console.log("editedResource")
+      //console.log(editedResource)
+      //console.log("calling update mutation")
+      hours=0;
       await API.graphql({
         query: updateResourcePOCMutation,
         variables: { input: editedResource },
@@ -295,12 +311,12 @@ const ProjectsResources = ({ signOut }) => {
     const index = projectsresources.findIndex((projectresource) => projectresource.id === id);
     newProjectsResources.splice(index, 1);
     setProjectsResources(newProjectsResources);
-    console.log("projectsresources")
-    console.log(projectsresources)
-    console.log("newProjectsResources")
-    console.log(newProjectsResources)
-    console.log("Deleting this id")
-    console.log(id)
+    //console.log("projectsresources")
+    //console.log(projectsresources)
+    //console.log("newProjectsResources")
+    //console.log(newProjectsResources)
+    //console.log("Deleting this id")
+    //console.log(id)
     await API.graphql({
       query: deleteProjectsResourcesMutation,
       variables: { input: { id } },

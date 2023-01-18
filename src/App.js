@@ -40,13 +40,13 @@ const App = ({ signOut }) => {
   }, []);
 
   async function fetchProjects() {
-    console.log("Running fetchProjects")
+    //console.log("Running fetchProjects")
     const apiData = await API.graphql({ query: listProjectPOCS });
-    console.log("Projects from API pre")
-    console.log(apiData)
+    //console.log("Projects from API pre")
+    //console.log(apiData)
     const projectsFromAPI = apiData.data.listProjectPOCS.items;
-    console.log("Projects from API post")
-    console.log(projectsFromAPI)
+    //console.log("Projects from API post")
+    //console.log(projectsFromAPI)
     setProjects(projectsFromAPI);
   }
 

@@ -50,7 +50,7 @@ const ResourcesEditableRow = ({
       <td>
         <input
         type="number"
-        placeholder="Hours Allocated"
+        placeholder="Hours allocated"
         name="resourceHoursAllocated"
         value={editFormData.resourceHoursAllocated}
         onChange={handleEditFormChange}
